@@ -1,0 +1,19 @@
+version: "3.7"
+services:
+  snowmail_pg:
+    image: postgres:12
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
+    ports:
+      - "5432:5432"
+    volumes:
+      - snowmail_pg_data:/var/lib/postgresql/data
+
+volumes:
+  snowmail_pg_data:
