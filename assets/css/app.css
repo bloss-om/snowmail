@@ -3,6 +3,7 @@
 @import "tailwindcss/utilities";
 @import "./scrollbar.css";
 @import "./forms.css";
+@import "./animates.css";
 
 /* This file is for your main application CSS */
 body {
@@ -13,6 +14,22 @@ body {
 /* Container */
 ._container{
   @apply flex items-center h-20 px-6 flex-shrink-0;
+}
+
+._snowmail h1 {
+  @apply text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400;
+}
+
+._form ._inputs *{
+  @apply rounded-none border border-grayLight;
+}
+
+._form ._inputs *:first-child{
+  @apply rounded-l-full;
+}
+
+._form ._inputs *:last-child{
+  @apply rounded-r-full;
 }
 
 /* Alerts and form errors used by phx.new */
@@ -111,24 +128,4 @@ body {
 }
 .fade-out {
   animation: 0.2s ease-out 0s normal forwards 1 fade-out-keys;
-}
-
-@keyframes fade-in-scale-keys{
-  0% { scale: 0.95; opacity: 0; }
-  100% { scale: 1.0; opacity: 1; }
-}
-
-@keyframes fade-out-scale-keys{
-  0% { scale: 1.0; opacity: 1; }
-  100% { scale: 0.95; opacity: 0; }
-}
-
-@keyframes fade-in-keys{
-  0% { opacity: 0; }
-  100% { opacity: 1; }
-}
-
-@keyframes fade-out-keys{
-  0% { opacity: 1; }
-  100% { opacity: 0; }
 }

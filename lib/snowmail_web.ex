@@ -51,6 +51,15 @@ defmodule SnowmailWeb do
     end
   end
 
+  def live_inbox_view do
+    quote do
+      use Phoenix.LiveView,
+        layout: {SnowmailWeb.LayoutView, "inbox.html"}
+
+      unquote(view_helpers())
+    end
+  end
+
   def live_component do
     quote do
       use Phoenix.LiveComponent

@@ -3,7 +3,7 @@ defmodule SnowmailWeb.InboxLive.Components.MailComponent do
 
   def render(assigns) do
     ~H"""
-    <div class="_mailw-full h-full overflow-y-auto">
+    <div class="_mailw-full h-full overflow-y-auto p-6">
       <p>Mail Content</p>
       <p>Mail Content</p>
       <p>Mail Content</p>

@@ -1,0 +1,9 @@
+<main class="flex w-full h-screen">
+    <section class="_sidebar w-20 flex-shrink-0 flex flex-col border border-gray-100">
+        <div class="_logo p-4 w-full animate-pulse hover:animate-spin text-primary self-center">
+            <%= render SnowmailWeb.IconsView , "logo.svg", %{ class: "hover:cursor-none hover:text-blue-400"} %>
+        </div>
+    </section>
+
+  <%= @inner_content %>
+</main>

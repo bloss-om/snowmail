@@ -10,7 +10,7 @@ module.exports = {
         primary: ['Rubik']
       },
       colors : {
-        primary: '#a3b1bc',
+        primary: '#4999DF',
         accent: '#4e5f6e',
         dark: '#1d252b',
         grayLight: '#e8ecf2'

@@ -7,3 +7,19 @@
         shadow-sm
         focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50;    
 }
+
+
+button {
+    @apply
+    px-6 py-2 rounded-md
+    focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50;    
+}
+
+
+button.primary {
+    @apply bg-primary text-white;
+}
+
+button.accent {
+    @apply bg-accent text-white;
+}

@@ -18,7 +18,10 @@ defmodule SnowmailWeb.Router do
     pipe_through :browser
 
     live "/", IndexLive.Index, :index
-    live "/inbox", InboxLive.Index, :index
+
+    scope "/inbox" do
+      live "/", InboxLive.Index, :index
+    end
 
     scope "/emails" do
       live "/", EmailLive.Index, :index
