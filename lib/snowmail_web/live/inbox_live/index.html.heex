@@ -1,0 +1,33 @@
+<div class="flex w-full h-screen">
+    <section class="_sidebar w-20 flex-shrink-0 flex flex-col border border-gray-100">
+        <div class="_logo p-4 w-full animate-pulse hover:animate-spin text-primary self-center">
+            <%= render SnowmailWeb.IconsView , "logo.svg", %{ class: "hover:cursor-none hover:text-blue-400"} %>
+        </div>
+    </section>
+
+    <section class="_mails w-[36rem] border border-gray-100 max-h-screen flex flex-col">
+        
+        <div class="_header _container justify-between border-b border-graylight">
+            <h2 class="text-xl font-medium">Inbox</h2>
+            <span class="h-max py-1 px-4 text-sm rounded-full bg-grayLight">12</span>
+        </div>
+
+        <div class="h-full overflow-hidden">
+            <div class="_list flex flex-col w-full h-full bg-accent bg-opacity-5 overflow-y-auto">
+                <%= for i <- 1..10 do %>
+                    <.live_component module={SnowmailWeb.InboxLive.Components.MessageComponent} id={"message-#{i}"}/>
+                <% end %>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="_content w-full border border-gray-100 overflow-hidden">
+        <div class="_search _container border-b border-graylight">
+            <input type="text" class="form-input" placeholder={"Search in mails ..."}>
+        </div>
+        <div class="h-full">
+            <.live_component module={SnowmailWeb.InboxLive.Components.MailComponent} id={"mail-read"} />
+        </div>
+    </section>
+</div>

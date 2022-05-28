@@ -5,7 +5,21 @@ module.exports = {
     '../lib/*_web/**/*.*ex',
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        primary: ['Rubik']
+      },
+      colors : {
+        primary: '#a3b1bc',
+        accent: '#4e5f6e',
+        dark: '#1d252b',
+        grayLight: '#e8ecf2'
+      }
+    },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms')({
+      strategy: 'class',
+    }),
+  ],
 }

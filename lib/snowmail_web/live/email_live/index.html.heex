@@ -1,0 +1,39 @@
+<h1>Listing Emails</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.email_index_path(@socket, :index)}>
+    <.live_component
+      module={SnowmailWeb.EmailLive.FormComponent}
+      id={@email.id || :new}
+      title={@page_title}
+      action={@live_action}
+      email={@email}
+      return_to={Routes.email_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Email</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="emails">
+    <%= for email <- @emails do %>
+      <tr id={"email-#{email.id}"}>
+        <td><%= email.email %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.email_show_path(@socket, :show, email) %></span>
+          <span><%= live_patch "Edit", to: Routes.email_index_path(@socket, :edit, email) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: email.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Email", to: Routes.email_index_path(@socket, :new) %></span>
