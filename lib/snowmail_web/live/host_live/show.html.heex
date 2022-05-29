@@ -1,0 +1,26 @@
+<h1>Show Host</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.host_show_path(@socket, :show, @host)}>
+    <.live_component
+      module={SnowmailWeb.HostLive.FormComponent}
+      id={@host.id}
+      title={@page_title}
+      action={@live_action}
+      host={@host}
+      return_to={Routes.host_show_path(@socket, :show, @host)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @host.name %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.host_show_path(@socket, :edit, @host), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.host_index_path(@socket, :index) %></span>

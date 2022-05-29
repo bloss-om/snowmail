@@ -2,14 +2,17 @@
 <section class="_mails w-[36rem] border border-gray-100 max-h-screen flex flex-col">
     
     <div class="_header _container justify-between border-b border-graylight">
-        <h2 class="text-xl font-medium">Inbox</h2>
+        <div>
+            <h2 class="text-xl font-medium">Inbox</h2>
+            <p><%= @email %></p>
+        </div>
         <span class="h-max py-1 px-4 text-sm rounded-full bg-grayLight">12</span>
     </div>
 
     <div class="h-full overflow-hidden">
         <div class="_list flex flex-col w-full h-full bg-accent bg-opacity-5 overflow-y-auto">
-            <%= for i <- 1..10 do %>
-                <.live_component module={SnowmailWeb.InboxLive.Components.MessageComponent} id={"message-#{i}"}/>
+            <%= for message <- @messages do %>
+                <.live_component module={SnowmailWeb.InboxLive.Components.MessageComponent} message={message} id={"message-#{message.id}"}/>
             <% end %>
         </div>
     </div>

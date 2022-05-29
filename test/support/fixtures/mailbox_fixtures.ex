@@ -17,4 +17,34 @@ defmodule Snowmail.MailboxFixtures do
 
     email
   end
+
+  @doc """
+  Generate a host.
+  """
+  def host_fixture(attrs \\ %{}) do
+    {:ok, host} =
+      attrs
+      |> Enum.into(%{
+        name: "some name"
+      })
+      |> Snowmail.Mailbox.create_host()
+
+    host
+  end
+
+  @doc """
+  Generate a message.
+  """
+  def message_fixture(attrs \\ %{}) do
+    {:ok, message} =
+      attrs
+      |> Enum.into(%{
+        content: "some content",
+        from: "some from",
+        subject: "some subject"
+      })
+      |> Snowmail.Mailbox.create_message()
+
+    message
+  end
 end

@@ -101,4 +101,196 @@ defmodule Snowmail.Mailbox do
   def change_email(%Email{} = email, attrs \\ %{}) do
     Email.changeset(email, attrs)
   end
+
+  alias Snowmail.Mailbox.Host
+
+  @doc """
+  Returns the list of hosts.
+
+  ## Examples
+
+      iex> list_hosts()
+      [%Host{}, ...]
+
+  """
+  def list_hosts do
+    Repo.all(Host)
+  end
+
+  @doc """
+  Gets a single host.
+
+  Raises `Ecto.NoResultsError` if the Host does not exist.
+
+  ## Examples
+
+      iex> get_host!(123)
+      %Host{}
+
+      iex> get_host!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_host!(id), do: Repo.get!(Host, id)
+
+  @doc """
+  Creates a host.
+
+  ## Examples
+
+      iex> create_host(%{field: value})
+      {:ok, %Host{}}
+
+      iex> create_host(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_host(attrs \\ %{}) do
+    %Host{}
+    |> Host.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a host.
+
+  ## Examples
+
+      iex> update_host(host, %{field: new_value})
+      {:ok, %Host{}}
+
+      iex> update_host(host, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_host(%Host{} = host, attrs) do
+    host
+    |> Host.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a host.
+
+  ## Examples
+
+      iex> delete_host(host)
+      {:ok, %Host{}}
+
+      iex> delete_host(host)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_host(%Host{} = host) do
+    Repo.delete(host)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking host changes.
+
+  ## Examples
+
+      iex> change_host(host)
+      %Ecto.Changeset{data: %Host{}}
+
+  """
+  def change_host(%Host{} = host, attrs \\ %{}) do
+    Host.changeset(host, attrs)
+  end
+
+  alias Snowmail.Mailbox.Message
+
+  @doc """
+  Returns the list of messages.
+
+  ## Examples
+
+      iex> list_messages()
+      [%Message{}, ...]
+
+  """
+  def list_messages do
+    Repo.all(Message)
+  end
+
+  @doc """
+  Gets a single message.
+
+  Raises `Ecto.NoResultsError` if the Message does not exist.
+
+  ## Examples
+
+      iex> get_message!(123)
+      %Message{}
+
+      iex> get_message!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_message!(id), do: Repo.get!(Message, id)
+
+  @doc """
+  Creates a message.
+
+  ## Examples
+
+      iex> create_message(%{field: value})
+      {:ok, %Message{}}
+
+      iex> create_message(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_message(attrs \\ %{}) do
+    %Message{}
+    |> Message.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a message.
+
+  ## Examples
+
+      iex> update_message(message, %{field: new_value})
+      {:ok, %Message{}}
+
+      iex> update_message(message, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_message(%Message{} = message, attrs) do
+    message
+    |> Message.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a message.
+
+  ## Examples
+
+      iex> delete_message(message)
+      {:ok, %Message{}}
+
+      iex> delete_message(message)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_message(%Message{} = message) do
+    Repo.delete(message)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking message changes.
+
+  ## Examples
+
+      iex> change_message(message)
+      %Ecto.Changeset{data: %Message{}}
+
+  """
+  def change_message(%Message{} = message, attrs \\ %{}) do
+    Message.changeset(message, attrs)
+  end
 end

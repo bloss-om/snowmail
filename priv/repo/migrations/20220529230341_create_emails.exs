@@ -4,6 +4,7 @@ defmodule Snowmail.Repo.Migrations.CreateEmails do
   def change do
     create table(:emails) do
       add :email, :string
+      add :host_id, references(:hosts)
 
       timestamps()
     end

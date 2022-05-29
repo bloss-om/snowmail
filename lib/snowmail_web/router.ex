@@ -19,8 +19,8 @@ defmodule SnowmailWeb.Router do
 
     live "/", IndexLive.Index, :index
 
-    scope "/inbox" do
-      live "/", InboxLive.Index, :index
+    scope "/inbox/" do
+      live "/:email/:host", InboxLive.Index, :index
     end
 
     scope "/emails" do
@@ -30,6 +30,24 @@ defmodule SnowmailWeb.Router do
 
       live "/:id", EmailLive.Show, :show
       live "/:id/show/edit", EmailLive.Show, :edit
+    end
+
+    scope "/hosts" do
+      live "/", HostLive.Index, :index
+      live "/new", HostLive.Index, :new
+      live "/:id/edit", HostLive.Index, :edit
+
+      live "/:id", HostLive.Show, :show
+      live "/:id/show/edit", HostLive.Show, :edit
+    end
+
+    scope "/messages" do
+      live "/", MessageLive.Index, :index
+      live "/new", MessageLive.Index, :new
+      live "/:id/edit", MessageLive.Index, :edit
+
+      live "/:id", MessageLive.Show, :show
+      live "/:id/show/edit", MessageLive.Show, :edit
     end
   end
 

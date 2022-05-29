@@ -6,13 +6,13 @@
         </div>
 
         <div class="_form flex flex-col space-y-4 items-center">
-            <div class="_inputs flex items-center space-x-0.5 w-full">
-                <input type="text" class="form-input w-full text-right pr-1">
-                <input type="text" class="form-input cursor-default px-1 !w-36" value="@mail.local" readonly>
+            <.form let={f} for={@changeset} class="_inputs flex items-center space-x-0.5 w-full">
+                <%= text_input f, :email, placeholder: "snowman", class: "form-input w-full text-right pr-1" %>
+                <%= select f, :host_id, @hosts_options, [class: "form-input w-full text-left pr-1"]  %>
                 <button class="primary">
                     Create
                 </button>
-            </div>
+            </.form>
         </div>
     </div>
 </div>

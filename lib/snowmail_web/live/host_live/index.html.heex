@@ -1,0 +1,39 @@
+<h1>Listing Hosts</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.host_index_path(@socket, :index)}>
+    <.live_component
+      module={SnowmailWeb.HostLive.FormComponent}
+      id={@host.id || :new}
+      title={@page_title}
+      action={@live_action}
+      host={@host}
+      return_to={Routes.host_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="hosts">
+    <%= for host <- @hosts do %>
+      <tr id={"host-#{host.id}"}>
+        <td><%= host.name %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.host_show_path(@socket, :show, host) %></span>
+          <span><%= live_patch "Edit", to: Routes.host_index_path(@socket, :edit, host) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: host.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Host", to: Routes.host_index_path(@socket, :new) %></span>
