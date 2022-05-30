@@ -7,6 +7,7 @@ migrate:
 reset:
 	@mix ecto.drop
 	@mix ecto.setup
+	@$(MAKE) serve
 
 serve:
 	@iex -S mix phx.server

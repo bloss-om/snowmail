@@ -7,6 +7,7 @@ defmodule Snowmail.Mailbox do
   alias Snowmail.Repo
 
   alias Snowmail.Mailbox.Email
+  alias Snowmail.Mailbox.Host
 
   @doc """
   Returns the list of emails.
@@ -18,7 +19,7 @@ defmodule Snowmail.Mailbox do
 
   """
   def list_emails do
-    Repo.all(Email)
+    Repo.all(Email) |> Repo.preload(:host)
   end
 
   @doc """
@@ -31,11 +32,44 @@ defmodule Snowmail.Mailbox do
       iex> get_email!(123)
       %Email{}
 
+      iex> get_email!("test", "me.local")
+      %Email{}
+
       iex> get_email!(456)
       ** (Ecto.NoResultsError)
 
+      iex> get_email!("test", "not.local")
+      ** (Ecto.NoResultsError)
   """
   def get_email!(id), do: Repo.get!(Email, id)
+
+  def get_email!(email, host) do
+    query =
+      from e in Email,
+        join: h in Host,
+        where: e.host_id == h.id and e.email == ^email and h.name == ^host
+
+    # Send the query to the repository
+    Repo.one!(query)
+  end
+
+  @doc """
+  Find an email with same email username & host id.
+
+  Raises `Ecto.NoResultsError` if the Email does not exist.
+
+  ## Examples
+
+      iex> get_email!("test","me.local")
+      %Email{}
+
+      iex> get_email!("test","not.local")
+      ** (Ecto.NoResultsError)
+
+  """
+  def find_email(%{"email" => email, "host_id" => host_id}) do
+    Repo.get_by(Email, email: email, host_id: host_id)
+  end
 
   @doc """
   Creates a email.
@@ -49,6 +83,7 @@ defmodule Snowmail.Mailbox do
       {:error, %Ecto.Changeset{}}
 
   """
+
   def create_email(attrs \\ %{}) do
     %Email{}
     |> Email.changeset(attrs)
@@ -132,6 +167,22 @@ defmodule Snowmail.Mailbox do
 
   """
   def get_host!(id), do: Repo.get!(Host, id)
+
+  @doc """
+  Gets a single host by name.
+
+  Raises `Ecto.NoResultsError` if the Host does not exist.
+
+  ## Examples
+
+      iex> get_host_by_name!("cold.local")
+      %Host{}
+
+      iex> get_host_by_name!("not.local")
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_host_by_name!(name), do: Repo.get_by!(Host, name: name)
 
   @doc """
   Creates a host.

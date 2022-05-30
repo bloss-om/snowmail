@@ -6,11 +6,17 @@
         </div>
 
         <div class="_form flex flex-col space-y-4 items-center">
-            <.form let={f} for={@changeset} class="_inputs flex items-center space-x-0.5 w-full">
-                <%= text_input f, :email, placeholder: "snowman", class: "form-input w-full text-right pr-1" %>
+            <.form 
+                let={f} 
+                for={@changeset} 
+                phx-change="validate" phx-submit="submit"
+                class="_inputs flex items-center space-x-0.5 w-full">
+                <%= text_input f, :email, placeholder: "snowman", class: ("form-input w-full text-right pr-1 " <> error_class(f, :email)) %>
                 <%= select f, :host_id, @hosts_options, [class: "form-input w-full text-left pr-1"]  %>
+
                 <button class="primary">
-                    Create
+                    <%= render SnowmailWeb.IconsView, "go.svg", %{class: "w-6 h-6 before-submit"} %>
+                    <%= render SnowmailWeb.IconsView, "loading.svg", %{class: "w-6 h-6 after-submit animate-spin"} %>
                 </button>
             </.form>
         </div>

@@ -14,14 +14,20 @@ defmodule SnowmailWeb.Router do
     plug :accepts, ["json"]
   end
 
+  # Inbox
+  live_session :inbox, on_mount: SnowmailWeb.InboxAssigns do
+    scope "/inbox", SnowmailWeb.InboxLive do
+      pipe_through :browser
+
+      live "/:email/:host", Index, :index
+    end
+  end
+
+  # Base
   scope "/", SnowmailWeb do
     pipe_through :browser
 
     live "/", IndexLive.Index, :index
-
-    scope "/inbox/" do
-      live "/:email/:host", InboxLive.Index, :index
-    end
 
     scope "/emails" do
       live "/", EmailLive.Index, :index

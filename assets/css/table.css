@@ -1,0 +1,7 @@
+table{
+    @apply w-full bg-gray-100;
+}
+
+table td {
+    @apply p-2;
+}

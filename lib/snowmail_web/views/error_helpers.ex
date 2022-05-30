@@ -18,6 +18,19 @@ defmodule SnowmailWeb.ErrorHelpers do
   end
 
   @doc """
+  Check if form has a field errors.
+  """
+  def error_class(form, field) do
+    if form.errors
+       |> Keyword.get_values(field)
+       |> Enum.count() > 0 do
+      "error"
+    else
+      ""
+    end
+  end
+
+  @doc """
   Translates an error message using gettext.
   """
   def translate_error({msg, opts}) do

@@ -4,6 +4,7 @@
 @import "./scrollbar.css";
 @import "./forms.css";
 @import "./animates.css";
+@import "./table.css";
 
 /* This file is for your main application CSS */
 body {
@@ -20,15 +21,15 @@ body {
   @apply text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400;
 }
 
-._form ._inputs *{
+._form ._inputs > *{
   @apply rounded-none border border-grayLight;
 }
 
-._form ._inputs *:first-child{
+._form ._inputs > *:first-child{
   @apply rounded-l-full;
 }
 
-._form ._inputs *:last-child{
+._form ._inputs > *:last-child{
   @apply rounded-r-full;
 }
 

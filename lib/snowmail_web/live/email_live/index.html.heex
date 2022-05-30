@@ -17,6 +17,7 @@
   <thead>
     <tr>
       <th>Email</th>
+      <th>Host</th>
 
       <th></th>
     </tr>
@@ -25,7 +26,7 @@
     <%= for email <- @emails do %>
       <tr id={"email-#{email.id}"}>
         <td><%= email.email %></td>
-
+        <td><%= if email.host do %><%= email.host.name %><% end %></td>
         <td>
           <span><%= live_redirect "Show", to: Routes.email_show_path(@socket, :show, email) %></span>
           <span><%= live_patch "Edit", to: Routes.email_index_path(@socket, :edit, email) %></span>

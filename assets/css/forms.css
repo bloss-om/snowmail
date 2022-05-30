@@ -8,13 +8,15 @@
         focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50;    
 }
 
+.error{
+    @apply border !border-red-500;
+}
 
 button {
     @apply
     px-6 py-2 rounded-md
     focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50;    
 }
-
 
 button.primary {
     @apply bg-primary text-white;
@@ -23,3 +25,17 @@ button.primary {
 button.accent {
     @apply bg-accent text-white;
 }
+
+*:disabled{
+    @apply !bg-gray-300;
+}
+
+.phx-submit-loading .before-submit,
+.after-submit{
+    @apply hidden;
+}
+
+.phx-submit-loading .after-submit,
+.before-submit{
+    @apply block;
+} 
