@@ -17,6 +17,7 @@
   <thead>
     <tr>
       <th>Subject</th>
+      <th>To</th>
       <th>From</th>
       <th>Content</th>
 
@@ -27,6 +28,7 @@
     <%= for message <- @messages do %>
       <tr id={"message-#{message.id}"}>
         <td><%= message.subject %></td>
+        <td><%= message.email && message.email.email %></td>
         <td><%= message.from %></td>
         <td><%= message.content %></td>
 

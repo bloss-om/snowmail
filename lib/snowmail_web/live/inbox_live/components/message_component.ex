@@ -11,14 +11,22 @@ defmodule SnowmailWeb.InboxLive.Components.MessageComponent do
               <span class="flex h-3 w-3">
                   <span class="relative animate-pulse inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
               </span>
-              <span>Contract amendment</span>
+              <p class="truncat"><%= @message.subject %></p>
           </h3>
-          <p class="text-sm font-thin break-all">Lorem ipsum, dolor sit amet consectetur consectetur  adipisicing elit ...</p>
-      </div>
-      <div class="_meta flex-shrink-0 flex items-center">
-          <span>2:32pm</span>
-      </div>
+          <p class="text-sm font-thin break-all"><%= short_message(@message.content) %></p>
+        </div>
+        <div class="_meta flex-shrink-0 flex items-center">
+          <time phx-hook="TimeAgo" datetime={@message.inserted_at} id={"time-#{@message.id}"}><%= time_ago(@message.inserted_at) %></time>
+        </div>
     </div>
     """
+  end
+
+  def short_message(text) do
+    String.slice(text, 0..50)
+  end
+
+  def time_ago(time) do
+    Timex.from_now(time)
   end
 end

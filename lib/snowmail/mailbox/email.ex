@@ -9,7 +9,9 @@ defmodule Snowmail.Mailbox.Email do
 
   schema "emails" do
     field :email, :string
+
     belongs_to :host, Host
+
     has_many :messages, Message
 
     timestamps()

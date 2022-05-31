@@ -9,6 +9,10 @@
     phx-change="validate"
     phx-submit="save">
   
+    <%= label f, :email_id %>
+    <%= select f, :email_id, @emails %>
+    <%= error_tag f, :email_id %>
+  
     <%= label f, :subject %>
     <%= text_input f, :subject %>
     <%= error_tag f, :subject %>

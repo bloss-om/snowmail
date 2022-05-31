@@ -260,8 +260,14 @@ defmodule Snowmail.Mailbox do
       [%Message{}, ...]
 
   """
-  def list_messages do
-    Repo.all(Message)
+  def list_messages(query \\ Message) do
+    Repo.all(query) |> Repo.preload(:email)
+  end
+
+  def list_messages_by_email(%Email{} = email) do
+    Message
+    |> where(email_id: ^email.id)
+    |> list_messages()
   end
 
   @doc """

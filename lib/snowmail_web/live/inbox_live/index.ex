@@ -5,6 +5,17 @@ defmodule SnowmailWeb.InboxLive.Index do
 
   def mount(%{"email" => email, "host" => host}, _session, socket) do
     fullemail = email <> "@" <> host
-    {:ok, assign(socket, email: fullemail, messages: [])}
+
+    {:ok,
+     socket
+     |> assign(email_text: fullemail, messages: [])
+     |> fetch_messages()}
+  end
+
+  def fetch_messages(socket) do
+    %{email: email} = socket.assigns
+
+    socket
+    |> assign(:messages, Mailbox.list_messages_by_email(email))
   end
 end

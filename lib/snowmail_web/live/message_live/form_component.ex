@@ -7,9 +7,12 @@ defmodule SnowmailWeb.MessageLive.FormComponent do
   def update(%{message: message} = assigns, socket) do
     changeset = Mailbox.change_message(message)
 
+    emails = Mailbox.list_emails() |> Enum.map(&{&1.email, &1.id})
+
     {:ok,
      socket
      |> assign(assigns)
+     |> assign(:emails, emails)
      |> assign(:changeset, changeset)}
   end
 
