@@ -15,7 +15,7 @@ defmodule SnowmailWeb.InboxLive.Components.MessageComponent do
           </h3>
           <p class="text-sm font-thin break-all"><%= short_message(@message.content) %></p>
         </div>
-        <div class="_meta flex-shrink-0 flex items-center">
+        <div class="_meta flex-shrink-0 flex items-center text-sm">
           <time phx-hook="TimeAgo" datetime={@message.inserted_at} id={"time-#{@message.id}"}><%= time_ago(@message.inserted_at) %></time>
         </div>
     </div>

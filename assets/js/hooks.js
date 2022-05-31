@@ -9,7 +9,7 @@ export default {
             this.updateTime();
         },
         destroyed() {
-            clearInterval(this.timer);
+            clearTimeout(this.timer);
         },
         updateTime(){
             let nextUpdate = moment.utc().local().diff(this.date) / 1000;
